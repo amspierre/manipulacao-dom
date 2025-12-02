@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inputNomes">
+    <button id="btnSubmit">Submit</button>
+    <button id="btnClear">Clear</button>
+
+    
+    <ul id="outputNomes"></ul>
+
+    <script>
+        let inputNomes = document.getElementById("inputNomes");
+        let btnSubmit = document.getElementById("btnSubmit");
+        let btnClear = document.getElementById("btnClear");
+        let outputNomes = document.getElementById("outputNomes");
+
+        btnSubmit.addEventListener("click", function() {
+            const nome = inputNomes.value.trim();
+
+            if (nome !== "") {
+                const li = document.createElement("li");
+                li.textContent = nome;
+                outputNomes.appendChild(li);
+                inputNomes.value = "";
+            }
+        });
+
+        btnClear.addEventListener("click", function() {
+            outputNomes.innerHTML = ""
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #menu{
+            background-color: rgb(247, 247, 247);
+            height: 100px;
+            width: 100px;
+        }
+
+        .ligado{
+            display: block;
+            background-color: aqua;
+        }
+
+        .none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menu dropdown</h1>
+    <button id="btnMenu">Menu</button>
+    <div id="menu" class="none">
+        <ul>
+            <li>Ams</li>
+            <li>Ams</li>
+            <li>Ams</li>
+        </ul>
+    </div>
+
+    <script>
+        const btnMenu = document.getElementById("btnMenu");
+        const menu = document.getElementById("menu")
+
+        btnMenu.addEventListener("click", function(){
+            menu.classList.toggle("none");
+        })
+    </script>
+</body>
+</html>

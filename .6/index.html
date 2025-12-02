@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=,, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button id="darkmode">Darkmode/Lightmode</button>
+    <h1>Pagina com darkmode</h1>
+
+    <script>
+        const darkmode = document.getElementById("darkmode");
+
+        darkmode.addEventListener("click", function() {
+            document.body.classList.toggle("darkmode");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #galeria{
+            display: flex;
+            gap: 10px;
+        }
+
+        #principal{
+            border-radius: 10px;
+            width: 430px;
+        }
+
+        #galeria > img{
+            width: 100px;
+            border-radius: 10px;
+        }
+
+        #galeria > img:hover{
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+     <img src="./img/camp.png" alt="" id="principal">
+
+     <div id="galeria">
+        <img src="./img/camp.png" alt="" id="img1">
+        <img src="./img/desert.png" alt="" id="img2">
+        <img src="./img/mountain.png" alt="" id="img3">
+        <img src="./img/sunshine.png" alt="" id="img4">
+    </div>
+
+    <script>
+        const img1 = document.getElementById("img1");
+        const img2 = document.getElementById("img2");
+        const img3 = document.getElementById("img3");
+        const img4 = document.getElementById("img4");
+
+        const principal = document.getElementById("principal");
+
+        img1.addEventListener("click", function(){
+            let src = this.src
+            principal.src = src
+        })
+
+        img2.addEventListener("click", function(){
+            let src = this.src
+            principal.src = src
+        })
+
+        img3.addEventListener("click", function(){
+            let src = this.src
+            principal.src = src
+        })
+
+        img4.addEventListener("click", function(){
+            let src = this.src
+            principal.src = src
+        })
+    </script>
+</body>
+</html>

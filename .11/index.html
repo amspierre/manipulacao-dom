@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuição de Pontos</title>
+</head>
+<body>
+
+    <h1>Sistema de Distribuição de Pontos</h1>
+
+    <h3>Pontos Restantes: <span id="pontosRestantes">10</span></h3>
+
+    <div class="atributo">
+        <strong>Força:</strong>
+        <button id="forcaMenos">-</button>
+        <span id="forcaValor">0</span>
+        <button id="forcaMais">+</button>
+    </div>
+
+    <div class="atributo">
+        <strong>Agilidade:</strong>
+        <button id="agilidadeMenos">-</button>
+        <span id="agilidadeValor">0</span>
+        <button id="agilidadeMais">+</button>
+    </div>
+
+    <div class="atributo">
+        <strong>Inteligência:</strong>
+        <button id="inteligenciaMenos">-</button>
+        <span id="inteligenciaValor">0</span>
+        <button id="inteligenciaMais">+</button>
+    </div>
+
+    <button id="confirmar">Confirmar Distribuição</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        let pontos = 10;
+
+        const pontosRestantes = document.getElementById("pontosRestantes");
+
+        const forcaMenos = document.getElementById("forcaMenos");
+        const forcaMais = document.getElementById("forcaMais");
+        const forcaValor = document.getElementById("forcaValor");
+
+        const agilidadeMenos = document.getElementById("agilidadeMenos");
+        const agilidadeMais = document.getElementById("agilidadeMais");
+        const agilidadeValor = document.getElementById("agilidadeValor");
+
+        const inteligenciaMenos = document.getElementById("inteligenciaMenos");
+        const inteligenciaMais = document.getElementById("inteligenciaMais");
+        const inteligenciaValor = document.getElementById("inteligenciaValor");
+
+        const confirmar = document.getElementById("confirmar");
+        const resultado = document.getElementById("resultado");
+
+        function aumentar(el) {
+            if (pontos > 0) {
+                el.textContent = Number(el.textContent) + 1;
+                pontos--;
+                pontosRestantes.textContent = pontos;
+            }
+        }
+
+        function diminuir(el) {
+            if (Number(el.textContent) > 0) {
+                el.textContent = Number(el.textContent) - 1;
+                pontos++;
+                pontosRestantes.textContent = pontos;
+            }
+        }
+
+        forcaMais.addEventListener("click", () => aumentar(forcaValor));
+        forcaMenos.addEventListener("click", () => diminuir(forcaValor));
+
+        agilidadeMais.addEventListener("click", () => aumentar(agilidadeValor));
+        agilidadeMenos.addEventListener("click", () => diminuir(agilidadeValor));
+
+        inteligenciaMais.addEventListener("click", () => aumentar(inteligenciaValor));
+        inteligenciaMenos.addEventListener("click", () => diminuir(inteligenciaValor));
+
+        confirmar.addEventListener("click", () => {
+            resultado.innerHTML = "";
+            if (pontos > 0) {
+                resultado.textContent = "Ainda há pontos para distribuir.";
+                return;
+            }
+
+            const resumo = document.createElement("p");
+            resumo.textContent =
+                "Força: " + forcaValor.textContent +
+                " | Agilidade: " + agilidadeValor.textContent +
+                " | Inteligência: " + inteligenciaValor.textContent;
+
+            resultado.appendChild(resumo);
+        });
+    </script>
+
+</body>
+</html>

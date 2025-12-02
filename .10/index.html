@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btnAdicionar">Adicionar linha</button>
+    <button id="btnRemover">Remover linha</button>
+
+    <table id="table">
+    </table>
+
+    <script>
+        const btnAdicionar = document.getElementById("btnAdicionar");
+        const btnRemover = document.getElementById("btnRemover");
+        const table = document.getElementById("table");
+
+        btnAdicionar.addEventListener("click", function() {
+            const novaLinha = document.createElement('tr');
+
+            const celula1 = document.createElement('td');
+            celula1.textContent = 'Texto 1';
+
+            const celula2 = document.createElement('td');
+            celula2.textContent = 'Texto 2';
+
+            novaLinha.appendChild(celula1);
+            novaLinha.appendChild(celula2);
+
+            table.appendChild(novaLinha);
+        });
+
+        btnRemover.addEventListener("click", function() {
+            if (table.lastChild) {
+                table.removeChild(table.lastChild);
+            }
+        });
+    </script>
+</body>
+</html>

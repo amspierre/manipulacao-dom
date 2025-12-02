@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #contador{
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="contador">
+        <button id="btnMenos">-1</button>
+        <p id="cont">0</p>
+        <button id="btnMais">+1</button>
+    </div>
+
+    <script>
+        const btnMais = document.getElementById("btnMais");
+        const btnMenos = document.getElementById("btnMenos");
+        const cont = document.getElementById("cont");
+
+        let numero = 0;
+
+        btnMais.addEventListener("click", function(){
+            numero += 1;
+            cont.textContent = numero;
+        })
+
+        btnMenos.addEventListener("click", function(){
+            numero -= 1;
+            cont.textContent = numero;
+        })
+    </script>
+</body>
+</html>

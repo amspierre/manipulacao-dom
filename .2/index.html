@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Alterar conteúdo dinamicamente</h1>
+
+    <div id="textos">
+        <p id="textoUm">Primeiro texto original</p>
+        <p id="textoDois">Segundo texto original</p>
+        <p id="textoTres">Terceiro texto original</p>
+    </div>
+
+    <div id="botoes">
+        <button id="btnUm">Botão um</button>
+        <button id="btnDois">Botão dois</button>
+        <button id="btnTres">Botão tres</button>
+    </div>
+
+    <script>
+        let btnUm = document.getElementById("btnUm");
+        let btnDois = document.getElementById("btnDois");
+        let btnTres = document.getElementById("btnTres");
+
+        textoUm = document.getElementById("textoUm");
+        textoDois = document.getElementById("textoDois");
+        textoTres = document.getElementById("textoTres");
+
+        btnUm.addEventListener("click", function(){
+            textoUm.textContent = "Primeiro texto alterado";
+        })
+        btnDois.addEventListener("click", function(){
+            textoDois.textContent = "Segundo texto alterado";
+        })
+        btnTres.addEventListener("click", function(){
+            textoTres.textContent = "terceiro texto alterado";
+        })
+    </script>
+</body>
+</html>

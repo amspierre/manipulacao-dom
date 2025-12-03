@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btnCreate">Registrar clique</button>
+    <button id="btnRemove">Limpar hitorico</button>
+
+    <ul id="historico">
+        
+    </ul>
+    
+    <script>
+        const btn = document.getElementById("btnCreate");
+        const historico = document.getElementById("historico");
+
+        btnCreate.addEventListener("click", function(){
+            let li = document.createElement("li");
+            const data = new Date();
+            li.textContent = data
+            historico.appendChild(li)
+            console.log(`Data: ${data}`);
+        })
+
+        btnRemove.addEventListener("click", function() {
+            historico.innerHTML = ""
+        });
+    </script>
+</body>
+</html>

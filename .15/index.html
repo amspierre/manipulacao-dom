@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Quiz</title>
+</head>
+<body>
+
+    <h2>Mini Quiz</h2>
+
+    <div class="pergunta">
+        <p>1) Qual linguagem roda no navegador?</p>
+        <label><input type="radio" name="q1" value="errado"> Python</label><br>
+        <label><input type="radio" name="q1" value="correto"> JavaScript</label><br>
+        <label><input type="radio" name="q1" value="errado"> C</label>
+    </div>
+
+    <div class="pergunta">
+        <p>2) Qual tag representa um título?</p>
+        <label><input type="radio" name="q2" value="correto"> &lt;h1&gt;</label><br>
+        <label><input type="radio" name="q2" value="errado"> &lt;p&gt;</label><br>
+        <label><input type="radio" name="q2" value="errado"> &lt;div&gt;</label>
+    </div>
+
+    <div class="pergunta">
+        <p>3) O que significa CSS?</p>
+        <label><input type="radio" name="q3" value="errado"> Computer Style System</label><br>
+        <label><input type="radio" name="q3" value="correto"> Cascading Style Sheets</label><br>
+        <label><input type="radio" name="q3" value="errado"> Color Style Selector</label>
+    </div>
+
+    <button id="finalizar">Finalizar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById("finalizar").addEventListener("click", function () {
+            const respostasMarcadas = document.querySelectorAll("input:checked");
+            let acertos = 0;
+
+            respostasMarcadas.forEach(item => {
+                if (item.value === "correto") {
+                    acertos++;
+                }
+            });
+
+            document.getElementById("resultado").textContent =
+                `Você acertou ${acertos} de 3 perguntas!`;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="time-display">0</h1>
+
+    <button id="start-pause-btn">Start</button>
+    <button id="reset-btn">Reset</button>
+
+    <script>
+        let timerInterval;
+let seconds = 0;
+let isRunning = false;
+
+const timeDisplay = document.getElementById('time-display');
+const startPauseBtn = document.getElementById('start-pause-btn');
+const resetBtn = document.getElementById('reset-btn');
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        seconds++;
+        timeDisplay.textContent = seconds;
+    }, 1000);
+    
+    isRunning = true;
+    startPauseBtn.textContent = 'Pause';
+}
+function pauseTimer() {
+    clearInterval(timerInterval); 
+    
+    isRunning = false;
+    startPauseBtn.textContent = 'Start';
+}
+
+function resetTimer() {
+    if (isRunning) {
+        pauseTimer();
+    }
+    
+    seconds = 0;
+    timeDisplay.textContent = seconds;
+    startPauseBtn.textContent = 'Start';
+}
+
+function toggleStartPause() {
+    if (isRunning) {
+        pauseTimer();
+    } else {
+        startTimer();
+    }
+}
+
+startPauseBtn.addEventListener('click', toggleStartPause);
+resetBtn.addEventListener('click', resetTimer);
+
+console.log('Contador inicializado.');
+    </script>
+</body>
+</html>

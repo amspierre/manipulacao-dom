@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #galeria{
+            display: flex;
+            gap: 10px;
+        }
+
+        #principal{
+            border-radius: 10px;
+            width: 430px;
+        }
+
+        #galeria > img{
+            width: 100px;
+            border-radius: 10px;
+        }
+
+        #galeria > img:hover{
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+     <img src="./img/camp.png" alt="" id="principal">
+
+     <div id="galeria">
+        <img src="./img/camp.png" alt="" id="img1">
+        <img src="./img/desert.png" alt="" id="img2">
+        <img src="./img/mountain.png" alt="" id="img3">
+        <img src="./img/sunshine.png" alt="" id="img4">
+    </div>
+    <button id="btnToggle">pause/play</button>
+
+    <script>
+        const principal = document.getElementById("principal");
+        const thumbs = document.querySelectorAll("#galeria img");
+        const btnToggle = document.getElementById("btnToggle");
+    
+        let index = 0;
+        let intervalo;
+    
+        function trocarImagem(src) {
+            principal.src = src;
+        }
+    
+        thumbs.forEach((thumb, i) => {
+            thumb.addEventListener("click", () => {
+                pausarAutoTroca();
+                trocarImagem(thumb.src);
+                index = i;
+            });
+        });
+    
+        function iniciarAutoTroca() {
+            intervalo = setInterval(() => {
+                index++;
+    
+                if (index >= thumbs.length) {
+                    index = 0;
+                }
+    
+                trocarImagem(thumbs[index].src);
+    
+            }, 3000);
+        }
+    
+        function pausarAutoTroca() {
+            clearInterval(intervalo);
+        }
+    
+        let pausado = false;
+    
+        btnToggle.addEventListener("click", () => {
+            if (!pausado) {
+                pausarAutoTroca();
+            } else {
+                iniciarAutoTroca();
+            }
+    
+            pausado = !pausado;
+        });
+    
+        iniciarAutoTroca();
+    </script>
+    
+</body>
+</html>

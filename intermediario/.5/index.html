@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .pergunta {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f2f2f2;
+            border-radius: 6px;
+        }
+
+        .resposta {
+            display: block;
+            margin: 8px 0;
+            padding: 8px;
+            background: #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .resposta:hover {
+            background: #ccc;
+        }
+
+        #resultado {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <button id="reiniciar-btn" style="display:none;">Reiniciar Quiz</button>
+
+    <script>
+        const app = document.getElementById("app");
+        const btnReiniciar = document.getElementById("reiniciar-btn");
+
+        // -------------------------
+        // 1. Array de perguntas
+        // -------------------------
+        const perguntas = [
+            {
+                pergunta: "Qual é a capital da França?",
+                alternativas: ["Paris", "Roma", "Londres", "Berlim"],
+                correta: 0
+            },
+            {
+                pergunta: "Quanto é 7 x 8?",
+                alternativas: ["48", "54", "56", "64"],
+                correta: 2
+            },
+            {
+                pergunta: "Qual desses é um mamífero?",
+                alternativas: ["Tubarão", "Golfinho", "Pinguim", "Sapo"],
+                correta: 1
+            },
+            {
+                pergunta: "Qual é a cor resultante de azul + amarelo?",
+                alternativas: ["Verde", "Roxo", "Laranja", "Cinza"],
+                correta: 0
+            },
+            {
+                pergunta: "Quem criou o JavaScript?",
+                alternativas: ["Bill Gates", "Linus Torvalds", "Brendan Eich", "Mark Zuckerberg"],
+                correta: 2
+            }
+        ];
+
+        // -------------------------
+        // Estado do Quiz
+        // -------------------------
+        let indice = 0;
+        let pontos = 0;
+
+        // -------------------------
+        // Renderizar Pergunta
+        // -------------------------
+        function mostrarPergunta() {
+            app.innerHTML = ""; // limpar
+
+            const q = perguntas[indice];
+
+            const div = document.createElement("div");
+            div.classList.add("pergunta");
+
+            div.innerHTML = `<h2>${q.pergunta}</h2>`;
+
+            // Criar alternativas
+            q.alternativas.forEach((alt, i) => {
+                const btn = document.createElement("div");
+                btn.classList.add("resposta");
+                btn.textContent = alt;
+
+                btn.addEventListener("click", () => {
+                    if (i === q.correta) pontos++;
+                    proximaPergunta();
+                });
+
+                div.appendChild(btn);
+            });
+
+            app.appendChild(div);
+        }
+
+        // -------------------------
+        // Avançar no quiz
+        // -------------------------
+        function proximaPergunta() {
+            indice++;
+
+            if (indice < perguntas.length) {
+                mostrarPergunta();
+            } else {
+                finalizarQuiz();
+            }
+        }
+
+        // -------------------------
+        // Final do quiz
+        // -------------------------
+        function finalizarQuiz() {
+            app.innerHTML = "";
+
+            let feedback = "";
+
+            if (pontos <= 2) feedback = "😢 Desempenho Ruim";
+            else if (pontos <= 4) feedback = "🙂 Bom trabalho";
+            else feedback = "🏆 Excelente!!!";
+
+            app.innerHTML = `
+                <div id="resultado">
+                    Você acertou <strong>${pontos}</strong> de ${perguntas.length}<br><br>
+                    ${feedback}
+                </div>
+            `;
+
+            btnReiniciar.style.display = "block";
+        }
+
+        // -------------------------
+        // Reiniciar Quiz
+        // -------------------------
+        btnReiniciar.addEventListener("click", () => {
+            indice = 0;
+            pontos = 0;
+            btnReiniciar.style.display = "none";
+            mostrarPergunta();
+        });
+
+        // Iniciar pela primeira vez
+        mostrarPergunta();
+
+    </script>
+</body>
+</html>

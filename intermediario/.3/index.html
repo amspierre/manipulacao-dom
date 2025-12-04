@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Simples</title>
+    <style>
+        /* Reset Básico e Fontes */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Títulos */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 25px;
+        }
+
+        /* Formulário */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .input-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+        }
+
+        /* Botão */
+        #adicionar-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        #adicionar-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Lista */
+        #lista-alunos {
+            list-style: none;
+            padding: 0;
+        }
+
+        .aluno-item {
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .aluno-item:hover {
+            background-color: #dfe3e7;
+        }
+
+        /* Estilo para a mensagem padrão (antes de ter alunos) */
+        .default-item {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Cadastro de Alunos</h1>
+
+        <form id="cadastro-form">
+            <div class="input-group">
+                <label for="nome">Nome do Aluno:</label>
+                <input type="text" id="nome" required placeholder="Ex: Maria Silva">
+            </div>
+
+            <div class="input-group">
+                <label for="matricula">Idade</label>
+                <input type="text" id="idade" required placeholder="Ex: 11">
+            </div>
+
+            <button type="submit" id="btnAdd">Adicionar Aluno</button>
+        </form>
+
+        <hr>
+
+        <h2>Lista de Alunos Cadastrados</h2>
+        
+        <ul id="lista-alunos">
+        </ul>
+    </div>
+
+    <script>
+        const nomeInput = document.getElementById("nome");
+        const idadeInput = document.getElementById("idade");
+        const form = document.getElementById("cadastro-form");
+        const lista = document.getElementById("lista-alunos");
+
+        let alunos = [];
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const nome = nomeInput.value.trim();
+            const idade = idadeInput.value.trim();
+
+            const aluno = { nome, idade };
+            alunos.push(aluno);
+
+            render();
+            form.reset();
+        });
+
+        function render() {
+            lista.innerHTML = "";
+
+            alunos.forEach((aluno) => {
+                const li = document.createElement("li");
+                li.classList.add("aluno-item");
+
+                li.innerHTML = `
+                    ${aluno.nome} — ${aluno.idade}
+                `;
+
+                lista.appendChild(li);
+            });
+        }
+
+    </script>
+    
+    </body>
+</html>
